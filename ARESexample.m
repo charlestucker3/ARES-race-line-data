@@ -11,7 +11,7 @@ more off % Allow the command window to scroll if it becomes full
 lap3 = readtable('MidOhioLap3.csv');
 
 % Curvature based on ay
-kappa = lap3.ay * 9.82 ./ lap3.speed;     
+kappa = lap3.ay * 9.82 ./ lap3.speed.^2;     
 
 % Path length s calculated from speed and time
 dist = zeros(size(lap3.time));
@@ -23,8 +23,7 @@ dist = cumsum(dist);
 % maxFuncs is the maximum number of basis functions in the forward pass
 % c affects the pruning process in the backward pass.  c = 2 is the default
 % cubic = true for cubic spline model, false for piecewise linear model
-% vervose = true for detailed output during model building
-params = aresparams2('maxFuncs', 100, 'c', 6, 'cubic', true);
+params = aresparams2('maxFuncs', 200, 'c', 2, 'cubic', true);
 
 % Build the ARES model 
 fprintf('\n')
@@ -46,4 +45,4 @@ xlabel('Distance (m)')
 ylabel('Curvature (rad/m)')
 grid on
 box on
-axis([0 3600 -0.8 0.8])
+axis([0 3600 -0.04 0.04])
