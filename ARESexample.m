@@ -23,7 +23,7 @@ dist = cumsum(dist);
 % maxFuncs is the maximum number of basis functions in the forward pass
 % c affects the pruning process in the backward pass.  c = 2 is the default
 % cubic = true for cubic spline model, false for piecewise linear model
-params = aresparams2('maxFuncs', 200, 'c', 2, 'cubic', true);
+params = aresparams2('maxFuncs', 150, 'c', 6, 'cubic', true);
 
 % Build the ARES model 
 fprintf('\n')
